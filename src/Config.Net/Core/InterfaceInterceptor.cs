@@ -92,11 +92,11 @@ namespace Config.Net.Core
       {
          if (_inpcHandler == null || rbox is MethodResultBox) return;
 
-         _inpcHandler.Invoke(invocation.InvocationTarget, new PropertyChangedEventArgs(rbox.Name));
+         _inpcHandler.Invoke(invocation.Proxy, new PropertyChangedEventArgs(rbox.Name));
          if(rbox.Name != rbox.StoreByName)
          {
             //notify on StoreByName as well
-            _inpcHandler.Invoke(invocation.InvocationTarget, new PropertyChangedEventArgs(rbox.StoreByName));
+            _inpcHandler.Invoke(invocation.Proxy, new PropertyChangedEventArgs(rbox.StoreByName));
          }
       }
    }

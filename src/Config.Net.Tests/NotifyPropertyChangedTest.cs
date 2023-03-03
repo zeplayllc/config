@@ -26,16 +26,19 @@ namespace Config.Net.Tests
       {
          bool isSet = false;
          string nameSet = null;
+         object senderSet = null;
 
          _interface.PropertyChanged += (sender, e) =>
          {
             isSet = true;
             nameSet = e.PropertyName;
+            senderSet = sender;
          };
 
          _interface.Name = "test";
          Assert.True(isSet);
          Assert.Equal("Name", nameSet);
+         Assert.Equal(_interface, senderSet);
       }
 
       [Fact]
@@ -43,16 +46,19 @@ namespace Config.Net.Tests
       {
          bool isSet = false;
          string nameSet = null;
+         object senderSet = null;
 
          _interface.PropertyChanged += (sender, e) =>
          {
             isSet = true;
             nameSet = e.PropertyName;
+            senderSet = sender;
          };
 
          _interface.AliasedName = "test";
          Assert.True(isSet);
          Assert.Equal("Name1", nameSet);
+         Assert.Equal(_interface, senderSet);
       }
 
       [Fact]

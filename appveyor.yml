@@ -1,0 +1,34 @@
+skip_branch_with_pr: true
+image: Visual Studio 2022
+version: 3.0.{build}
+configuration: Release
+
+dotnet_csproj:
+  patch: true
+  file: '**\*.csproj'
+  version: '{version}'
+  package_version: '{version}'
+  assembly_version: '{version}'
+  file_version: '{version}'
+  informational_version: '{version}'
+
+before_build:
+  - cmd: nuget restore
+  
+build:
+  project: RaidInterface.sln
+  publish_nuget: true
+  publish_nuget_symbols: true
+  verbosity: minimal
+
+nuget:
+  account_feed: true
+  project_feed: true
+  disable_publish_on_pr: true
+
+deploy:
+- provider: NuGet
+  symbol_server: https://ci.appveyor.com/nuget/brandonmckenzie96399-87w92ufyxrq3/api/v2/package
+  api_key:
+    secure: Ggnf/xt23XzkrwzSxwzU88raAxYGjZh3RvUNEdiv1wQ=
+  artifact: /.*\.symbols\.nupkg/

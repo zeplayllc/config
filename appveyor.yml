@@ -1,6 +1,6 @@
 skip_branch_with_pr: true
 image: Visual Studio 2022
-version: 4.8.{build}-prerelease
+version: 4.8.{build}
 configuration: Release
 
 dotnet_csproj:

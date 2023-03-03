@@ -96,7 +96,7 @@ namespace Config.Net.Core
          if(rbox.Name != rbox.StoreByName)
          {
             //notify on StoreByName as well
-            _inpcHandler.Invoke(invocation.InvocationTarget, new PropertyChangedEventArgs(rbox.StoreByName));
+            _inpcHandler.Invoke(invocation.Proxy, new PropertyChangedEventArgs(rbox.StoreByName));
          }
       }
    }
